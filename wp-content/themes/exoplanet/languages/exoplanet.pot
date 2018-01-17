@@ -1,0 +1,931 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Exoplanet 1.6.9\n"
+"POT-Creation-Date: 2017-11-21 15:09+0000\n"
+"PO-Revision-Date: 2017-02-02 13:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;_n;_n_noop;_x;_nx;esc_attr__;esc_attr_e;"
+"esc_attr_x;esc_html__;esc_html_e;esc_html_x\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:16 404.php:24
+msgid "404 Error"
+msgstr ""
+
+#: 404.php:34
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:36
+msgid "Maybe try a search?"
+msgstr ""
+
+#: 404.php:38
+msgid "Browse our pages."
+msgstr ""
+
+#: comments.php:26
+msgid "One Comment"
+msgstr ""
+
+#: comments.php:36
+msgid "Older Comments"
+msgstr ""
+
+#: comments.php:37
+msgid "Newer Comments"
+msgstr ""
+
+#: comments.php:57
+msgid "Comments are closed."
+msgstr ""
+
+#: comments.php:68
+msgid "Name"
+msgstr ""
+
+#: comments.php:72
+msgid "Email"
+msgstr ""
+
+#: comments.php:76
+msgid "Website"
+msgstr ""
+
+#: comments.php:82
+msgid "Comment"
+msgstr ""
+
+#: footer.php:17 functions/customizer.php:1376 functions/extras.php:177
+#: page-features-cta.php:88 page-features-cta.php:116 page-features.php:88
+#: page-features.php:116 template-parts/home.php:60 template-parts/home.php:88
+#: template-parts/home.php:204
+msgid "Read More"
+msgstr ""
+
+#: footer.php:90
+msgid "https://wordpress.org/"
+msgstr ""
+
+#: footer.php:90
+#, php-format
+msgid "Proudly powered by %s"
+msgstr ""
+
+#: footer.php:92
+#, php-format
+msgid "Theme: %2$s by %1$s"
+msgstr ""
+
+#: functions.php:37
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:38
+msgid "Footer Menu"
+msgstr ""
+
+#: functions.php:87 functions/customizer.php:650
+msgid "Right Sidebar"
+msgstr ""
+
+#: functions.php:97 functions/customizer.php:649
+msgid "Left Sidebar"
+msgstr ""
+
+#: functions.php:107
+msgid "Shop Sidebar"
+msgstr ""
+
+#: functions.php:117
+msgid "Footer Column 1"
+msgstr ""
+
+#: functions.php:127
+msgid "Footer Column 2"
+msgstr ""
+
+#: functions.php:137
+msgid "Footer Column 3"
+msgstr ""
+
+#: functions.php:147
+msgid "Footer Column 4"
+msgstr ""
+
+#: functions.php:157
+msgid "Middle Footer"
+msgstr ""
+
+#: functions.php:182
+msgid "on"
+msgstr ""
+
+#: functions.php:197
+msgid "no-subset"
+msgstr ""
+
+#: functions/breadcrumbs.php:238
+msgid "Breadcrumbs"
+msgstr ""
+
+#: functions/breadcrumbs.php:239
+msgid "Home"
+msgstr ""
+
+#: functions/breadcrumbs.php:240
+msgid "404 Not Found"
+msgstr ""
+
+#: functions/breadcrumbs.php:241
+msgid "Archives"
+msgstr ""
+
+#: functions/breadcrumbs.php:243
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
+
+#: functions/breadcrumbs.php:245
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: functions/breadcrumbs.php:247
+#, php-format
+msgid "Minute %s"
+msgstr ""
+
+#: functions/breadcrumbs.php:249
+#, php-format
+msgid "Week %s"
+msgstr ""
+
+#: functions/breadcrumbs.php:701
+msgid "g:i a"
+msgstr ""
+
+#: functions/breadcrumbs.php:718
+msgid "i"
+msgstr ""
+
+#: functions/breadcrumbs.php:735
+msgid "g a"
+msgstr ""
+
+#: functions/breadcrumbs.php:751 functions/breadcrumbs.php:780
+#: functions/breadcrumbs.php:807 functions/breadcrumbs.php:834
+#: functions/breadcrumbs.php:1169
+msgid "Y"
+msgstr ""
+
+#: functions/breadcrumbs.php:752 functions/breadcrumbs.php:808
+#: functions/breadcrumbs.php:1173
+msgid "F"
+msgstr ""
+
+#: functions/breadcrumbs.php:753 functions/breadcrumbs.php:1177
+msgid "j"
+msgstr ""
+
+#: functions/breadcrumbs.php:781
+msgid "W"
+msgstr ""
+
+#: functions/custom-header.php:20
+msgid "Bridge"
+msgstr ""
+
+#: functions/customizer.php:87
+msgid "Show Page Content On Front Page"
+msgstr ""
+
+#: functions/customizer.php:88
+msgid ""
+"If you have selected a static front page, the page content will be displayed "
+"below the Featured Services Section"
+msgstr ""
+
+#: functions/customizer.php:106
+msgid "Site Title Font Size"
+msgstr ""
+
+#: functions/customizer.php:107
+msgid "Default is 46px. Scales proportionally on smaller screens."
+msgstr ""
+
+#: functions/customizer.php:130
+msgid "Tagline Font Size"
+msgstr ""
+
+#: functions/customizer.php:131
+msgid "Default is 16px. Scales proportionally on smaller screens."
+msgstr ""
+
+#: functions/customizer.php:143
+msgid "Site Width"
+msgstr ""
+
+#: functions/customizer.php:159
+msgid "Content Width in pixels"
+msgstr ""
+
+#: functions/customizer.php:160
+msgid "Default width is 1200px. Minimum width is 1120px."
+msgstr ""
+
+#: functions/customizer.php:182
+msgid "Or Switch To Full Width"
+msgstr ""
+
+#: functions/customizer.php:191
+msgid "Header and Menu Styling"
+msgstr ""
+
+#: functions/customizer.php:209
+msgid "Header Background Color"
+msgstr ""
+
+#: functions/customizer.php:241
+msgid "Header Background Color (Scrolled)"
+msgstr ""
+
+#: functions/customizer.php:273
+msgid "Menu Item Color"
+msgstr ""
+
+#: functions/customizer.php:292
+msgid "Disable Hover Effect"
+msgstr ""
+
+#: functions/customizer.php:310
+msgid "Menu Line Height"
+msgstr ""
+
+#: functions/customizer.php:311
+msgid "Default is 82px"
+msgstr ""
+
+#: functions/customizer.php:334
+msgid "Menu Uppercase"
+msgstr ""
+
+#: functions/customizer.php:351
+msgid "Highlight Menu Item Background"
+msgstr ""
+
+#: functions/customizer.php:352
+msgid "Add"
+msgstr ""
+
+#: functions/customizer.php:352
+msgid "to your menu item(s) CSS class"
+msgstr ""
+
+#: functions/customizer.php:371
+msgid "Show Search Icon In Menu"
+msgstr ""
+
+#: functions/customizer.php:372
+msgid ""
+"Search icon will only display if you have set your own menu as Primary Menu "
+"in Appearance >> Menus"
+msgstr ""
+
+#: functions/customizer.php:381
+msgid "Header/Page Title"
+msgstr ""
+
+#: functions/customizer.php:396
+msgid "Background Overlay Pattern"
+msgstr ""
+
+#: functions/customizer.php:397
+msgid ""
+"Only works with a background image. Set this at Customize > Header Image"
+msgstr ""
+
+#: functions/customizer.php:402 functions/customizer.php:1009
+msgid "None"
+msgstr ""
+
+#: functions/customizer.php:403 functions/customizer.php:1010
+msgid "Broken Lines"
+msgstr ""
+
+#: functions/customizer.php:404 functions/customizer.php:1011
+msgid "Carbon Fiber"
+msgstr ""
+
+#: functions/customizer.php:405 functions/customizer.php:1012
+msgid "Dark Mosaic"
+msgstr ""
+
+#: functions/customizer.php:406 functions/customizer.php:1013
+msgid "Diagonal (Large)"
+msgstr ""
+
+#: functions/customizer.php:407 functions/customizer.php:1014
+msgid "Diagonal (Small)"
+msgstr ""
+
+#: functions/customizer.php:408 functions/customizer.php:1015
+msgid "Small Bricks"
+msgstr ""
+
+#: functions/customizer.php:409 functions/customizer.php:1016
+msgid "Small Pixels"
+msgstr ""
+
+#: functions/customizer.php:410 functions/customizer.php:1017
+msgid "Squares (Dark)"
+msgstr ""
+
+#: functions/customizer.php:411 functions/customizer.php:1018
+msgid "Squares (Light)"
+msgstr ""
+
+#: functions/customizer.php:428
+msgid "Background Image Darkness"
+msgstr ""
+
+#: functions/customizer.php:429
+msgid "Only works with a background image. 0 is normal, 100 is very dark"
+msgstr ""
+
+#: functions/customizer.php:452
+msgid "Background Color"
+msgstr ""
+
+#: functions/customizer.php:453
+msgid "If not using a Header Image"
+msgstr ""
+
+#: functions/customizer.php:473
+msgid "Page Title Color"
+msgstr ""
+
+#: functions/customizer.php:499
+msgid "Page Title Position"
+msgstr ""
+
+#: functions/customizer.php:500
+msgid ""
+"If you select Below Header, the page title will be the same color as "
+"Headings in Customize > Colors"
+msgstr ""
+
+#: functions/customizer.php:505
+msgid "In Header"
+msgstr ""
+
+#: functions/customizer.php:506
+msgid "Below Header"
+msgstr ""
+
+#: functions/customizer.php:521
+msgid "Layout"
+msgstr ""
+
+#: functions/customizer.php:526
+msgid "Centered"
+msgstr ""
+
+#: functions/customizer.php:527
+msgid "Title left, breadcrumbs right"
+msgstr ""
+
+#: functions/customizer.php:528
+msgid "Breadcrumbs left, title right"
+msgstr ""
+
+#: functions/customizer.php:545
+msgid "Enable Breadcrumbs"
+msgstr ""
+
+#: functions/customizer.php:554
+msgid "Blog Settings"
+msgstr ""
+
+#: functions/customizer.php:570
+msgid "Title/Meta Alignment"
+msgstr ""
+
+#: functions/customizer.php:575
+msgid "Center"
+msgstr ""
+
+#: functions/customizer.php:576
+msgid "Left"
+msgstr ""
+
+#: functions/customizer.php:577
+msgid "Right"
+msgstr ""
+
+#: functions/customizer.php:592
+msgid "Title/Image Style"
+msgstr ""
+
+#: functions/customizer.php:597
+msgid "Overlap"
+msgstr ""
+
+#: functions/customizer.php:598
+msgid "No Overlap"
+msgstr ""
+
+#: functions/customizer.php:616
+msgid "Disable Post Date"
+msgstr ""
+
+#: functions/customizer.php:634
+msgid "Disable Post Author"
+msgstr ""
+
+#: functions/customizer.php:644
+msgid "Blog Sidebar Position"
+msgstr ""
+
+#: functions/customizer.php:645
+msgid ""
+"Applies to blog index and archives. Sidebar position can be edited for each "
+"page/post individually."
+msgstr ""
+
+#: functions/customizer.php:651
+msgid "No Sidebar"
+msgstr ""
+
+#: functions/customizer.php:652
+msgid "No Sidebar (Condensed)"
+msgstr ""
+
+#: functions/customizer.php:670
+msgid "Text"
+msgstr ""
+
+#: functions/customizer.php:691 functions/customizer.php:920
+msgid "Headings"
+msgstr ""
+
+#: functions/customizer.php:712
+msgid "Posts Wrapper"
+msgstr ""
+
+#: functions/customizer.php:733
+msgid "Sidebar Background"
+msgstr ""
+
+#: functions/customizer.php:754
+msgid "Sidebar Links"
+msgstr ""
+
+#: functions/customizer.php:775
+msgid "Footer Top Background"
+msgstr ""
+
+#: functions/customizer.php:796
+msgid "Footer Mid Background"
+msgstr ""
+
+#: functions/customizer.php:817
+msgid "Footer Bottom Background"
+msgstr ""
+
+#: functions/customizer.php:827
+msgid "Background Image"
+msgstr ""
+
+#: functions/customizer.php:832
+msgid "Colors"
+msgstr ""
+
+#: functions/customizer.php:849
+msgid "Main Highlight Color"
+msgstr ""
+
+#: functions/customizer.php:857
+msgid "Typography"
+msgstr ""
+
+#: functions/customizer.php:868
+msgid "Header"
+msgstr ""
+
+#: functions/customizer.php:881
+msgid "Navigation"
+msgstr ""
+
+#: functions/customizer.php:894
+msgid "Page Title"
+msgstr ""
+
+#: functions/customizer.php:907
+msgid "Content"
+msgstr ""
+
+#: functions/customizer.php:933
+msgid "Footer"
+msgstr ""
+
+#: functions/customizer.php:943
+msgid "Static Homepage Options"
+msgstr ""
+
+#: functions/customizer.php:952
+msgid "Full Screen Slider/Hero Section"
+msgstr ""
+
+#: functions/customizer.php:969
+msgid "Disable Slider/Hero Section"
+msgstr ""
+
+#: functions/customizer.php:986
+msgid "Default Slider Background Image"
+msgstr ""
+
+#: functions/customizer.php:989
+msgid "Recommended minimum image size: 1600 x 900"
+msgstr ""
+
+#: functions/customizer.php:1004
+msgid "Slider Image Overlay Pattern"
+msgstr ""
+
+#: functions/customizer.php:1035
+msgid "Slider Image Darkness"
+msgstr ""
+
+#: functions/customizer.php:1036
+msgid "0 is normal, 100 is very dark"
+msgstr ""
+
+#: functions/customizer.php:1063
+msgid "Slide "
+msgstr ""
+
+#: functions/customizer.php:1064
+msgid ""
+"If you do not want to show this slide, simply leave the Select Page empty, "
+"or choose \"--Select--\" from the page list."
+msgstr ""
+
+#: functions/customizer.php:1082 functions/customizer.php:1278
+#: functions/customizer.php:1324 functions/customizer.php:1368
+msgid "Select Page"
+msgstr ""
+
+#: functions/customizer.php:1083
+msgid ""
+"The slide will display the Title, Excerpt and Featured Image of the selected "
+"page. **If you do not upload a Featured Image in the page editor, your "
+"Default Slider Background Image will be displayed**"
+msgstr ""
+
+#: functions/customizer.php:1100
+msgid "Left Button Text"
+msgstr ""
+
+#: functions/customizer.php:1101 functions/customizer.php:1136
+msgid "Leave this empty to not show this button."
+msgstr ""
+
+#: functions/customizer.php:1118 functions/customizer.php:1153
+msgid "Link to Page:"
+msgstr ""
+
+#: functions/customizer.php:1135
+msgid "Right Button Text"
+msgstr ""
+
+#: functions/customizer.php:1165
+msgid "Featured Services"
+msgstr ""
+
+#: functions/customizer.php:1166
+msgid ""
+"By default this displays your latest posts. To override this, select a page "
+"for the first feature."
+msgstr ""
+
+#: functions/customizer.php:1183
+msgid "Disable Featured Section"
+msgstr ""
+
+#: functions/customizer.php:1201
+msgid "Section Title"
+msgstr ""
+
+#: functions/customizer.php:1217
+msgid "Enable 'Read More' Buttons"
+msgstr ""
+
+#: functions/customizer.php:1239
+msgid "Feature "
+msgstr ""
+
+#: functions/customizer.php:1260
+msgid "Icon"
+msgstr ""
+
+#: functions/customizer.php:1288
+msgid "About Us Section"
+msgstr ""
+
+#: functions/customizer.php:1289
+msgid ""
+"By default this displays a random post. To override this, select a page. The "
+"middle text displays the excerpt of your chosen page, if you have added an "
+"excerpt. The lower text displays the first 50 words of the page content. The "
+"image is the featured image of the selected page."
+msgstr ""
+
+#: functions/customizer.php:1306
+msgid "Disable About Section"
+msgstr ""
+
+#: functions/customizer.php:1333
+msgid "Call-to-action Panel"
+msgstr ""
+
+#: functions/customizer.php:1350
+msgid "Disable Call-to-action Panel"
+msgstr ""
+
+#: functions/customizer.php:1369
+msgid ""
+"Displays the page title and excerpt, if you have added an excerpt to the "
+"selected page."
+msgstr ""
+
+#: functions/customizer.php:1386
+msgid "Button Text"
+msgstr ""
+
+#: functions/customizer.php:1392 functions/theme-help.php:19
+msgid "Theme Help"
+msgstr ""
+
+#: functions/customizer.php:1394
+msgid "For help with the Exoplanet theme, please see the theme documentation."
+msgstr ""
+
+#: functions/customizer.php:1403 functions/customizer.php:1477
+msgid "Documentation"
+msgstr ""
+
+#: functions/customizer.php:1412 functions/customizer.php:1423
+#: functions/customizer.php:1485
+msgid "Go Pro"
+msgstr ""
+
+#: functions/customizer.php:1414
+msgid ""
+"Upgrade to Exoplanet Pro for even more cool features and customization "
+"options."
+msgstr ""
+
+#: functions/customizer.php:1468
+msgid "More options available"
+msgstr ""
+
+#: functions/extras.php:52
+msgid "Create your Primary Menu here"
+msgstr ""
+
+#: functions/extras.php:204
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: functions/extras.php:206
+msgid "Edit"
+msgstr ""
+
+#: functions/extras.php:218
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: functions/extras.php:527
+msgid "Sidebar Layout"
+msgstr ""
+
+#: functions/template-tags.php:32 functions/template-tags.php:41
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: functions/template-tags.php:50
+msgid "No Comments"
+msgstr ""
+
+#: functions/template-tags.php:52
+msgid " Comments"
+msgstr ""
+
+#: functions/template-tags.php:54
+msgid "1 Comment"
+msgstr ""
+
+#: functions/template-tags.php:74 functions/template-tags.php:80
+msgid ", "
+msgstr ""
+
+#: functions/template-tags.php:76 functions/template-tags.php:82
+#, php-format
+msgid "%1$s"
+msgstr ""
+
+#: functions/theme-help.php:19 functions/theme-help.php:32
+#, php-format
+msgid "Welcome to %1$s %2$s"
+msgstr ""
+
+#: functions/theme-help.php:38
+msgid "Theme Links"
+msgstr ""
+
+#: functions/theme-help.php:39
+msgid "Theme Page"
+msgstr ""
+
+#: functions/theme-help.php:40
+msgid "Theme Demo"
+msgstr ""
+
+#: functions/theme-help.php:41 functions/theme-help.php:57
+msgid "Theme Documentation"
+msgstr ""
+
+#: functions/theme-help.php:42
+msgid "Theme Support"
+msgstr ""
+
+#: functions/theme-help.php:43
+msgid "Rate this theme"
+msgstr ""
+
+#: functions/theme-help.php:50
+#, php-format
+msgid "Getting Started with %s"
+msgstr ""
+
+#: functions/theme-help.php:60
+msgid ""
+"Do you need help to setup, configure and configure this theme? Check out the "
+"extensive theme documentation on our website."
+msgstr ""
+
+#: functions/theme-help.php:64
+#, php-format
+msgid "View %s Documentation"
+msgstr ""
+
+#: functions/theme-help.php:70
+msgid "Theme Options"
+msgstr ""
+
+#: functions/theme-help.php:73
+#, php-format
+msgid "%s makes use of the Customizer for the theme settings."
+msgstr ""
+
+#: functions/theme-help.php:77
+msgid "Customize Theme"
+msgstr ""
+
+#: functions/theme-help.php:99
+#, php-format
+msgid "%1$s is proudly brought to you by %2$s. If you like this theme, %3$s :)"
+msgstr ""
+
+#: functions/theme-help.php:99
+msgid "Exoplanet Review"
+msgstr ""
+
+#: functions/theme-help.php:99
+msgid "rate it"
+msgstr ""
+
+#: search.php:16 search.php:24
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: template-parts/content-none.php:12
+msgid "Nothing Found"
+msgstr ""
+
+#: template-parts/content-none.php:18
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:22
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:27
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: template-parts/content-page.php:16 template-parts/content-single.php:21
+#: template-parts/content.php:43
+msgid "Pages:"
+msgstr ""
+
+#: template-parts/content-page.php:27
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: template-parts/content.php:49
+msgid "Continue Reading"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:49
+msgid "There are no reviews yet."
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:62
+msgid "Add a review"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:62
+#, php-format
+msgid "Be the first to review &ldquo;%s&rdquo;"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:63
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:67
+msgid "Name*"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:68
+msgid "Email*"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:70
+msgid "Submit"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:76
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a review."
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:80
+msgid "Your Rating"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:81
+msgid "Rate&hellip;"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:82
+msgid "Perfect"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:83
+msgid "Good"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:84
+msgid "Average"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:85
+msgid "Not that bad"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:86
+msgid "Very Poor"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:90
+msgid "Your Review"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:99
+msgid ""
+"Only logged in customers who have purchased this product may leave a review."
+msgstr ""

@@ -1,0 +1,14 @@
+<wpml-config>
+<admin-texts>
+<key name="theme_mods_exoplanet">
+    <key name="slider_button_left1" />
+    <key name="slider_button_left2" />
+    <key name="slider_button_left3" />
+    <key name="slider_button_right1" />
+    <key name="slider_button_right2" />
+    <key name="slider_button_right3" />
+    <key name="featured_title" />
+    <key name="cta_button" />
+</key>
+</admin-texts>
+</wpml-config>

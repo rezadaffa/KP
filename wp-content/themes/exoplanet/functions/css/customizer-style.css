@@ -1,0 +1,318 @@
+.customize-control select{
+	width: 98%;
+}
+
+#customize-theme-controls .accordion-section-content{
+	background: #FFF;
+}
+
+.exoplanet-accordion-section-title{
+	color: #fff;
+	font-size: 110%;
+	padding: 10px 10px 11px 14px;
+	line-height: 21px;
+	background: #b50b52;
+	margin: 0 -12px 0;
+}
+.exoplanet-accordion-section-paragraph{
+	color: #fff;
+	padding: 0px 10px 11px 14px;
+	line-height: 16px;
+	background: #b50b52;
+	margin: 0 -12px 0;
+}
+
+/* Alpha Color Picker */
+.customize-control-alpha-color .wp-picker-container .iris-picker {
+	border-bottom:none;
+}
+
+.customize-control-alpha-color .wp-picker-container {
+	max-width: 257px;
+}
+
+.customize-control-alpha-color .wp-picker-open + .wp-picker-input-wrap {
+	width: 100%;
+}
+
+.customize-control-alpha-color .wp-picker-input-wrap input[type="text"].wp-color-picker.alpha-color-control {
+	float: left;
+	width: 195px;
+}
+
+.customize-control-alpha-color .wp-picker-input-wrap .button {
+	margin-left: 0;
+	float: right;
+}
+
+.wp-picker-container .wp-picker-open ~ .wp-picker-holder .alpha-color-picker-container {
+	display: block;
+}
+
+.alpha-color-picker-container {
+	border: 1px solid #dfdfdf;
+	border-top: none;
+	display: none;
+	background: #FFF;
+	padding: 0 11px 10px;
+	position: relative;
+}
+
+.alpha-color-picker-container .ui-widget-content,
+.alpha-color-picker-container .ui-widget-header,
+.alpha-color-picker-wrap .ui-state-focus {
+	background: transparent;
+	border: none;
+}
+
+.alpha-color-picker-wrap a.iris-square-value:focus {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.alpha-color-picker-container .ui-slider {
+	position: relative;
+	z-index: 1;
+	height: 24px;
+	text-align: center;
+	margin: 0 auto;
+	width: 88%;
+	width: calc( 100% - 28px );
+}
+
+.alpha-color-picker-container .ui-slider-handle,
+.alpha-color-picker-container .ui-widget-content .ui-state-default {
+	color: #777;
+	background-color: #FFF;
+	text-shadow: 0 1px 0 #FFF;
+	text-decoration: none;
+	position: absolute;
+	z-index: 2;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	border: 1px solid #aaa;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	margin-top: -2px;
+	top: 0;
+	height: 26px;
+	width: 26px;
+	cursor: ew-resize;
+	font-size: 0;
+	padding: 0;
+	line-height: 27px;
+	margin-left: -14px;
+}
+
+.alpha-color-picker-container .ui-slider-handle.show-opacity {
+	font-size: 12px;
+}
+
+.alpha-color-picker-container .click-zone {
+	width: 14px;
+	height: 24px;
+	display: block;
+	position: absolute;
+	left: 10px;
+}
+
+.alpha-color-picker-container .max-click-zone {
+	right: 10px;
+	left: auto;
+}
+
+.alpha-color-picker-container .transparency {
+	height: 24px;
+	width: 100%;
+	background-color: #FFF;
+	background-image: url(transparency-grid.png);
+	box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 0;
+	margin-top: -24px;
+}
+
+@media only screen and (max-width: 782px) {
+	.customize-control-alpha-color .wp-picker-input-wrap input[type="text"].wp-color-picker.alpha-color-control {
+		width: 184px;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	.customize-control-alpha-color .wp-picker-input-wrap input[type="text"].wp-color-picker.alpha-color-control {
+		width: 172px;
+		height: 33px;
+	}
+}
+
+/* Multi-image control*/
+.customize-control-multi-image .thumbnails .thumbnail{
+	position: relative;
+	width: 100%;
+	height: 90px;
+	margin-bottom: 5px;
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	outline: none;
+	border: 1px solid #DDDDDD; 
+	background: #EEE;
+}
+
+.customize-control-multi-image .thumbnails .thumbnail.no-list{
+	list-style-type: none; 
+}
+
+.customize-control-multi-image .thumbnails .thumbnail.selected{
+	border: 1px solid #333; 
+}
+
+.customize-control-multi-image .thumbnails .thumbnail .removeIcon{
+	cursor: pointer;
+	position: absolute;
+	right: 5px;
+	background: #F11616;
+	text-align: center;
+	height: 26px;
+	width: 30px;
+	top: 5px;
+}
+
+.customize-control-multi-image .thumbnails .thumbnail .removeIcon a{
+	font-size: 16px;
+	color: #FFF; 
+	line-height: 26px;
+	display: block;
+	font-family: Arial;
+}
+
+.customize-control-multi-image .thumbnails .thumbnail:focus, 
+.customize-control-multi-image .thumbnails .thumbnail:hover{
+	border: 1px solid #333; 
+}
+
+.customize-control-multi-image .customize-control-content{
+	margin-top: 1em; 
+}
+
+.customize-control-multi-image .multi-images-remove{
+	float: right; 
+}
+
+/*Chosen*/
+.chosen-container-single .chosen-single{
+	border-radius: 0px;
+	height: 28px;
+	background: #FFF;
+	border-color: #DDDDDD;
+	line-height: 28px;
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.06);
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.06);
+}
+
+.chosen-container-single .chosen-single div b{
+	background-position: 0px 4px;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single div b{
+	background-position: -18px 4px;
+}
+
+.chosen-container-multi .chosen-choices li{
+	float: none;
+}
+
+/*Theme Info*/
+.exoplanet-info{
+	margin-top: 10px;
+}
+
+.exoplanet-info a{
+	background: #b50b52;
+	padding: 5px 10px;
+	color: #FFF;
+	text-align: center;
+	display: block;
+	margin-top: 5px;
+	line-height: 1.2;
+	box-shadow: none;
+	opacity: 1;
+}
+
+.exoplanet-info a:hover{
+	opacity: 0.8;
+}
+
+/*FontAwesome Icon List*/
+.type-icon{
+	overflow: hidden;
+}
+
+.selected-icon{
+	background: #F6F6F6;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border: 1px solid #CCC;
+	position: relative;
+	margin-right: 30px;
+	cursor: pointer;
+	font-size: 22px;
+}
+
+.selected-icon span{
+	position: absolute;
+	background: #F6F6F6;
+	right: -30px;
+	top: -1px;
+	height: 30px;
+	width: 30px;
+	border: 1px solid #CCC;
+	font-size: 18px;
+}
+.selected-icon span:hover{
+	color: #000;
+	font-weight: bold;
+}
+
+.icon-list{
+	height: 215px;
+	overflow-y: scroll;
+	font-size: 14px;
+	background: #F6F6F6;
+	border: 1px solid #CCC;
+	border-right: 0;
+	border-top: 0;
+	display: none;
+	cursor: pointer;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.icon-list li{
+	float: left;
+	padding-left: 7px;
+	width: 90%;
+	text-align: left;
+	line-height: 26px;
+}
+
+.icon-list li i{
+	margin: 0 10px 0 0;
+	min-width: 30px;
+	font-size: 18px;
+}
+
+.icon-list li:hover{
+	background: #333;
+	color: #FFF;
+}
+
+.icon-list li.icon-active{
+	background: #0073aa;
+	color: #FFF;
+}
