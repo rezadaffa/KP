@@ -24,8 +24,7 @@ extract( $atts );
 $el_class = $this->getExtraClass( $el_class );
 $css_classes = array(
 	'vc_row',
-	'wpb_row',
-	//deprecated
+	'wpb_row', //deprecated
 	'vc_inner',
 	'vc_row-fluid',
 	$el_class,
@@ -39,15 +38,12 @@ if ( 'yes' === $disable_element ) {
 	}
 }
 
-if ( vc_shortcode_custom_css_has_property( $css, array(
-	'border',
-	'background',
-) ) ) {
-	$css_classes[] = 'vc_row-has-fill';
+if (vc_shortcode_custom_css_has_property( $css, array('border', 'background') )) {
+	$css_classes[]='vc_row-has-fill';
 }
 
-if ( ! empty( $atts['gap'] ) ) {
-	$css_classes[] = 'vc_column-gap-' . $atts['gap'];
+if (!empty($atts['gap'])) {
+	$css_classes[] = 'vc_column-gap-'.$atts['gap'];
 }
 
 if ( ! empty( $equal_height ) ) {

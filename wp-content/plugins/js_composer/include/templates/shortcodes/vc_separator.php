@@ -14,16 +14,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @var string $el_class
  * @var string $align
  * @var string $css
- * @var string $css_animation
  * Shortcode class
  * @var $this WPBakeryShortCode_VC_Separator
  */
-$el_width = $style = $color = $border_width = $accent_color = $el_class = $align = $css = $css_animation = '';
+$el_width = $style = $color = $border_width = $accent_color = $el_class = $align = $css = '';
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 extract( $atts );
 
 $class_to_filter = '';
-$class_to_filter .= vc_shortcode_custom_css_class( $css, ' ' ) . $this->getExtraClass( $el_class ) . $this->getCSSAnimation( $css_animation );
+$class_to_filter .= vc_shortcode_custom_css_class( $css, ' ' ) . $this->getExtraClass( $el_class );
 $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, $class_to_filter, $this->settings['base'], $atts );
 
 $vc_text_separator = visual_composer()->getShortCode( 'vc_text_separator' );

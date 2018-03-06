@@ -1,10 +1,6 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
-	'name' => __( 'Old Tour', 'js_composer' ),
+	'name' => __( 'Tour', 'js_composer' ),
 	'base' => 'vc_tour',
 	'show_settings_on_create' => false,
 	'is_container' => true,

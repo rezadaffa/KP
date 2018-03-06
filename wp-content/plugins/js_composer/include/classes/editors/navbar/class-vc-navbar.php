@@ -107,8 +107,7 @@ class Vc_Navbar implements Vc_Render {
 
 		return '<li class="vc_pull-right"><a id="vc_post-settings-button" href="javascript:;" class="vc_icon-btn vc_post-settings" title="'
 		       . __( 'Page settings', 'js_composer' ) . '">'
-		       . '<span id="vc_post-css-badge" class="vc_badge vc_badge-custom-css" style="display: none;">' . __( 'CSS', 'js_composer' )
-			   . '</span><i class="vc-composer-icon vc-c-icon-cog"></i></a>'
+		       . '<span id="vc_post-css-badge" class="vc_badge vc_badge-custom-css" style="display: none;">' . __( 'CSS', 'js_composer' ) . '</span></a>'
 		       . '</li>';
 	}
 
@@ -117,7 +116,7 @@ class Vc_Navbar implements Vc_Render {
 	 */
 	public function getControlFullscreen() {
 		return '<li class="vc_show-mobile vc_pull-right">'
-		       . '<a id="vc_fullscreen-button" class="vc_icon-btn vc_fullscreen-button" title="'. __( 'Full screen', 'js_composer' ) . '"><i class="vc-composer-icon vc-c-icon-fullscreen"></i></a>'
+		       . '<a id="vc_fullscreen-button" class="vc_icon-btn vc_fullscreen-button" title="'. __( 'Full screen', 'js_composer' ) . '"></a>'
 		       . '</li>';
 	}
 
@@ -126,7 +125,7 @@ class Vc_Navbar implements Vc_Render {
 	 */
 	public function getControlWindowed() {
 		return '<li class="vc_show-mobile vc_pull-right">'
-		       . '<a id="vc_windowed-button" class="vc_icon-btn vc_windowed-button" title="'. __( 'Exit full screen', 'js_composer' ) . '"><i class="vc-composer-icon vc-c-icon-fullscreen_exit"></i></a>'
+		       . '<a id="vc_windowed-button" class="vc_icon-btn vc_windowed-button" title="'. __( 'Exit full screen', 'js_composer' ) . '"></a>'
 		       . '</li>';
 	}
 
@@ -143,7 +142,6 @@ class Vc_Navbar implements Vc_Render {
 			return '<li class="vc_show-mobile">'
 			       . '	<a href="javascript:;" class="vc_icon-btn vc_element-button" data-model-id="vc_element" id="vc_add-new-element" title="'
 			       . '' . __( 'Add new element', 'js_composer' ) . '">'
-				   . '    <i class="vc-composer-icon vc-c-icon-add_element"></i>'
 			       . '	</a>'
 			       . '</li>';
 		}
@@ -160,7 +158,7 @@ class Vc_Navbar implements Vc_Render {
 		}
 
 		return '<li><a href="javascript:;" class="vc_icon-btn vc_templates-button vc_navbar-border-right"  id="vc_templates-editor-button" title="'
-		       . __( 'Templates', 'js_composer' ) . '"><i class="vc-composer-icon vc-c-icon-add_template"></i></a></li>';
+		       . __( 'Templates', 'js_composer' ) . '"></a></li>';
 	}
 
 	/**

@@ -2,7 +2,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-
 $total_templates = visual_composer()
 	->templatesPanelEditor()
 	->loadDefaultTemplates();
@@ -75,7 +74,6 @@ $templates_total_count = count( $total_templates );
 			<div class="vc_welcome-visible-ne">
 				<a id="vc_not-empty-add-element" class="vc_add-element-not-empty-button"
 				   title="<?php _e( 'Add Element', 'js_composer' ) ?>" data-vc-element="add-element-action">
-					<i class="vc-composer-icon vc-c-icon-add"></i>
 				</a>
 			</div>
 		<?php endif; ?>

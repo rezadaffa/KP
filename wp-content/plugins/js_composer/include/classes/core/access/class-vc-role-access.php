@@ -2,7 +2,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-
 require_once vc_path_dir( 'CORE_DIR', 'access/abstract-class-vc-access.php' );
 
 /**
@@ -27,8 +26,8 @@ class Vc_Role_Access extends Vc_Access {
 
 	/**
 	 * @param $part
-	 * @return \Vc_Role_Access_Controller
-	 * @throws \Exception
+	 *
+	 * @return Vc_Role_Access_Controller
 	 */
 	public function part( $part ) {
 		$role_name = $this->getRoleName();
@@ -53,10 +52,9 @@ class Vc_Role_Access extends Vc_Access {
 	/**
 	 * Set role to get access to data.
 	 *
-	 * @param $roleName
-	 * @return $this
-	 * @internal param $role
+	 * @param $role
 	 *
+	 * @return $this
 	 */
 	public function who( $roleName ) {
 		$this->roleName = $roleName;

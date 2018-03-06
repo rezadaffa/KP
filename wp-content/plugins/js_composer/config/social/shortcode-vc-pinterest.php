@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
 	'name' => __( 'Pinterest', 'js_composer' ),
 	'base' => 'vc_pinterest',
@@ -22,7 +18,6 @@ return array(
 			),
 			'description' => __( 'Select button layout.', 'js_composer' ),
 		),
-		vc_map_add_css_animation(),
 		array(
 			'type' => 'css_editor',
 			'heading' => __( 'CSS box', 'js_composer' ),

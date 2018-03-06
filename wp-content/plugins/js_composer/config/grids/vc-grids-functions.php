@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 /**
  * @since 4.5.2
  *
@@ -129,7 +125,6 @@ function vc_include_field_render( $value ) {
 		'group' => $post->post_type,
 	);
 }
-
 /**
  * @param $data_arr
  *

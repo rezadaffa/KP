@@ -17,7 +17,7 @@ class Vc_Updater {
 	/**
 	 * @var string
 	 */
-	protected $version_url = 'http://updates.wpbakery.com/';
+	protected $version_url = 'http://version.wpbakery.com/?';
 
 	/**
 	 * Proxy URL that returns real download link
@@ -34,20 +34,25 @@ class Vc_Updater {
 	/**
 	 * @var bool
 	 */
-	protected $auto_updater;
-
-	public function init() {
-		add_filter( 'upgrader_pre_download', array(
-			$this,
-			'preUpgradeFilter',
-		), 10, 4 );
-	}
+	protected $auto_updater = false;
 
 	/**
-	 * @deprecated 5.0
+	 * @var bool
 	 */
+	protected $upgrade_manager = false;
+
+	/**
+	 * @var bool
+	 */
+	protected $iframe = false;
+
+	public function init() {
+		add_filter( 'upgrader_pre_download', array( $this, 'preUpgradeFilter' ), 10, 4 );
+
+		add_action( 'wp_ajax_nopriv_vc_check_license_key', array( $this, 'checkLicenseKeyFromRemote' ) );
+	}
+
 	public function checkLicenseKeyFromRemote() {
-		_deprecated_function( '\Vc_Updater::checkLicenseKeyFromRemote', '5.0 (will be removed in next release)', 'vc_license()->checkLicenseKeyFromRemote()' );
 		vc_license()->checkLicenseKeyFromRemote();
 	}
 
@@ -63,7 +68,7 @@ class Vc_Updater {
 	/**
 	 * Getter for manager updater.
 	 *
-	 * @return Vc_Updating_Manager|bool
+	 * @return Vc_Updating_Manager
 	 */
 	public function updateManager() {
 		return $this->auto_updater;
@@ -74,18 +79,22 @@ class Vc_Updater {
 	 * @return string
 	 */
 	public function versionUrl() {
-		return $this->version_url;
+		return $this->version_url . time();
 	}
 
 	/**
 	 * Get unique, short-lived download link
 	 *
-	 * @param deprecated string $license_key
+	 * @param string $license_key
 	 *
 	 * @return array|boolean JSON response or false if request failed
 	 */
-	public function getDownloadUrl( $license_key = '' ) {
-		$url = $this->getUrl();
+	public function getDownloadUrl( $license_key ) {
+		$url = rawurlencode( $_SERVER['HTTP_HOST'] );
+		$key = rawurlencode( $license_key );
+
+		$url = $this->download_link_url . '?product=vc&url=' . $url . '&key=' . $key . '&version=' . WPB_VC_VERSION;
+
 		$response = wp_remote_get( $url );
 
 		if ( is_wp_error( $response ) ) {
@@ -95,30 +104,17 @@ class Vc_Updater {
 		return json_decode( $response['body'], true );
 	}
 
-	protected function getUrl() {
-		$host = esc_url( vc_license()->getSiteUrl() );
-		$key = rawurlencode( vc_license()->getLicenseKey() );
-
-		$url = $this->download_link_url . '?product=vc&url=' . $host . '&key=' . $key . '&version=' . WPB_VC_VERSION;
-
-		return $url;
-	}
-
-	public static function getUpdaterUrl() {
-		return vc_is_network_plugin() ? network_admin_url( 'admin.php?page=vc-updater' ) : admin_url( 'admin.php?page=vc-updater' );
-	}
-
 	/**
 	 * Get link to newest VC
 	 *
 	 * @param $reply
 	 * @param $package
-	 * @param $updater WP_Upgrader
+	 * @param $updater
 	 *
 	 * @return mixed|string|WP_Error
 	 */
 	public function preUpgradeFilter( $reply, $package, $updater ) {
-		$condition1 = isset( $updater->skin->plugin ) && vc_plugin_name() === $updater->skin->plugin;
+		$condition1 = isset( $updater->skin->plugin ) && $updater->skin->plugin === vc_plugin_name();
 		$condition2 = isset( $updater->skin->plugin_info ) && $updater->skin->plugin_info['Name'] === $this->title;
 		if ( ! $condition1 && ! $condition2 ) {
 			return $reply;
@@ -129,11 +125,13 @@ class Vc_Updater {
 			return new WP_Error( 'no_credentials', __( "Error! Can't connect to filesystem", 'js_composer' ) );
 		}
 
-		if ( ! vc_license()->isActivated() ) {
+		$license_key = vc_license()->getLicenseKey();
+
+		if ( ! $license_key || ! vc_license()->isActivated() ) {
 			if ( vc_is_as_theme() && vc_get_param( 'action' ) !== 'update-selected' ) {
 				return false;
 			}
-			$url = esc_url( self::getUpdaterUrl() );
+			$url = esc_url( vc_is_network_plugin() ? network_admin_url( 'admin.php?page=vc-updater' ) : admin_url( 'admin.php?page=vc-updater' ) );
 
 			return new WP_Error( 'no_credentials', __( 'To receive automatic updates license activation is required. Please visit <a href="' . $url . '' . '" target="_blank">Settings</a> to activate your Visual Composer.', 'js_composer' ) . ' ' . sprintf( ' <a href="http://go.wpbakery.com/faq-update-in-theme" target="_blank">%s</a>', __( 'Got Visual Composer in theme?', 'js_composer' ) ) );
 		}
@@ -141,7 +139,7 @@ class Vc_Updater {
 		$updater->strings['downloading_package_url'] = __( 'Getting download link...', 'js_composer' );
 		$updater->skin->feedback( 'downloading_package_url' );
 
-		$response = $this->getDownloadUrl();
+		$response = $this->getDownloadUrl( $license_key );
 
 		if ( ! $response ) {
 			return new WP_Error( 'no_credentials', __( 'Download link could not be retrieved', 'js_composer' ) );
@@ -159,14 +157,13 @@ class Vc_Updater {
 			return $downloaded_archive;
 		}
 
-		$plugin_directory_name = dirname( vc_plugin_name() );
+		$plugin_directory_name = 'js_composer';
 
 		// WP will use same name for plugin directory as archive name, so we have to rename it
 		if ( basename( $downloaded_archive, '.zip' ) !== $plugin_directory_name ) {
-			$new_archive_name = dirname( $downloaded_archive ) . '/' . $plugin_directory_name . time() . '.zip';
-			if ( rename( $downloaded_archive, $new_archive_name ) ) {
-				$downloaded_archive = $new_archive_name;
-			}
+			$new_archive_name = dirname( $downloaded_archive ) . '/' . $plugin_directory_name . '.zip';
+			rename( $downloaded_archive, $new_archive_name );
+			$downloaded_archive = $new_archive_name;
 		}
 
 		return $downloaded_archive;
@@ -179,16 +176,17 @@ class Vc_Updater {
 	 *
 	 * @param $reply
 	 * @param $package
-	 * @param $updater WP_Upgrader
+	 * @param $updater
 	 *
 	 * @return mixed|string|WP_Error
 	 */
 	public function upgradeFilterFromEnvato( $reply, $package, $updater ) {
-		_deprecated_function( '\Vc_Updater::upgradeFilterFromEnvato', '4.8 (will be removed in next release)' );
+		_deprecated_function( '\Vc_Updater::upgradeFilterFromEnvato', '4.8 (will be removed in 4.11)' );
 		global $wp_filesystem;
-		/** @var \WP_Filesystem_Base $wp_filesystem */
 
-		if ( ( isset( $updater->skin->plugin ) && vc_plugin_name() === $updater->skin->plugin ) || ( isset( $updater->skin->plugin_info ) && $updater->skin->plugin_info['Name'] === $this->title ) ) {
+		if ( ( isset( $updater->skin->plugin ) && $updater->skin->plugin === vc_plugin_name() ) ||
+		     ( isset( $updater->skin->plugin_info ) && $updater->skin->plugin_info['Name'] === $this->title )
+		) {
 			$updater->strings['download_envato'] = __( 'Downloading package from envato market...', 'js_composer' );
 			$updater->skin->feedback( 'download_envato' );
 			$package_filename = 'js_composer.zip';
@@ -231,9 +229,8 @@ class Vc_Updater {
 	 * @deprecated 4.8
 	 */
 	public function removeTemporaryDir() {
-		_deprecated_function( '\Vc_Updater::removeTemporaryDir', '4.8 (will be removed in next release)' );
+		_deprecated_function( '\Vc_Updater::removeTemporaryDir', '4.8 (will be removed in 4.11)' );
 		global $wp_filesystem;
-		/** @var \WP_Filesystem_Base $wp_filesystem */
 		if ( is_dir( $wp_filesystem->wp_content_dir() . 'uploads/js_composer_envato_package' ) ) {
 			$wp_filesystem->delete( $wp_filesystem->wp_content_dir() . 'uploads/js_composer_envato_package', true );
 		}
@@ -249,8 +246,9 @@ class Vc_Updater {
 	 * @return string
 	 */
 	protected function envatoDownloadPurchaseUrl( $username, $api_key, $purchase_code ) {
-		_deprecated_function( '\Vc_Updater::envatoDownloadPurchaseUrl', '4.8 (will be removed in next release)' );
+		_deprecated_function( '\Vc_Updater::envatoDownloadPurchaseUrl', '4.8 (will be removed in 4.11)' );
 
 		return 'http://marketplace.envato.com/api/edge/' . rawurlencode( $username ) . '/' . rawurlencode( $api_key ) . '/download-purchase:' . rawurlencode( $purchase_code ) . '.json';
 	}
+
 }

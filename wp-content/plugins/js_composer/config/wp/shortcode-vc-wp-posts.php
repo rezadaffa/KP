@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
 	'name' => 'WP ' . __( 'Recent Posts' ),
 	'base' => 'vc_wp_posts',

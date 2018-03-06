@@ -2,7 +2,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-
 require_once vc_path_dir( 'EDITORS_DIR', 'navbar/class-vc-navbar.php' );
 
 /**
@@ -84,12 +83,12 @@ class Vc_Navbar_Frontend extends Vc_Navbar {
 			$output = '<li class="vc_pull-right">'
 			          . '<div class="vc_dropdown" id="vc_screen-size-control">'
 			          . '<a href="#" class="vc_dropdown-toggle"'
-			          . ' title="' . __( 'Responsive preview', 'js_composer' ) . '"><i class="vc-composer-icon vc_current-layout-icon vc-c-icon-layout_default"'
-			          . ' id="vc_screen-size-current"></i><i class="vc-composer-icon vc-c-icon-arrow_drop_down"></i></a>'
+			          . ' title="' . __( 'Responsive preview', 'js_composer' ) . '"><i class="vc_icon default"'
+			          . ' id="vc_screen-size-current"></i><b class="vc_caret"></b></a>'
 			          . '<ul class="vc_dropdown-list">';
 			while ( $screen = current( $screen_sizes ) ) {
 				$output .= '<li><a href="#" title="' . esc_attr( $screen['title'] ) . '"'
-				           . ' class="vc_screen-width vc-composer-icon vc-c-icon-layout_' . $screen['key']
+				           . ' class="vc_screen-width ' . $screen['key']
 				           . ( isset( $screen['active'] ) && $screen['active'] ? ' active' : '' )
 				           . '" data-size="' . $screen['size'] . '"></a></li>';
 				next( $screen_sizes );
@@ -161,7 +160,7 @@ class Vc_Navbar_Frontend extends Vc_Navbar {
 	public function getControlViewPost() {
 		return '<li class="vc_pull-right">'
 		       . '<a href="' . esc_attr( get_permalink( $this->post() ) ) . '" class="vc_icon-btn vc_back-button"'
-		       . ' title="' . esc_attr__( 'Exit Visual Composer edit mode', 'js_composer' ) . '"><i class="vc-composer-icon vc-c-icon-close"></i></a>'
+		       . ' title="' . esc_attr__( 'Exit Visual Composer edit mode', 'js_composer' ) . '"></a>'
 		       . '</li>';
 	}
 }

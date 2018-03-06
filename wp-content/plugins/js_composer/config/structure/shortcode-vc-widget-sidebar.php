@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
 	'name' => __( 'Widgetised Sidebar', 'js_composer' ),
 	'base' => 'vc_widget_sidebar',

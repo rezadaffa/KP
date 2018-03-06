@@ -1,10 +1,6 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
-	'name' => __( 'Old Tabs', 'js_composer' ),
+	'name' => __( 'Tabs', 'js_composer' ),
 	'base' => 'vc_tabs',
 	'show_settings_on_create' => false,
 	'is_container' => true,

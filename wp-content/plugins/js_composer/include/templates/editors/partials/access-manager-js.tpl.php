@@ -2,7 +2,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-
 ?>
 <script type="text/javascript" id="vc_role_access_manager_script">
 	(function ( $ ) {
@@ -74,9 +73,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 					if ( 'vc_row' === shortcode ) {
 						return true;
 					}
-					return _.every( _groupAccessRules.current_user, function ( role ) {
-						return ! (! _.isUndefined( _groupAccessRules[ role ] ) && ! _.isUndefined( _groupAccessRules[ role ][ 'shortcodes' ] ) && _.isUndefined( _groupAccessRules[ role ][ 'shortcodes' ][ shortcode ] ));
-					} );
+					if ( ! _.every( _groupAccessRules.current_user, function ( role ) {
+							return ! (! _.isUndefined( _groupAccessRules[ role ] ) && ! _.isUndefined( _groupAccessRules[ role ][ 'shortcodes' ] ) && _.isUndefined( _groupAccessRules[ role ][ 'shortcodes' ][ shortcode ] ));
+						} ) ) {
+						return false;
+					} else {
+						return true;
+					}
 				},
 				updateMergedCaps: function ( rule ) {
 					if ( undefined !== _mergedCaps[ rule ] ) {

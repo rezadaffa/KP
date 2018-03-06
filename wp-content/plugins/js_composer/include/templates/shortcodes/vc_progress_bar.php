@@ -15,11 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @var $options
  * @var $el_class
  * @var $css
- * @var $css_animation
  * Shortcode class
  * @var $this WPBakeryShortCode_VC_Progress_Bar
  */
-$title = $values = $units = $bgcolor = $css = $custombgcolor = $customtxtcolor = $options = $el_class = $css_animation = '';
+$title = $values = $units = $bgcolor = $css = $custombgcolor = $customtxtcolor = $options = $el_class = '';
 $output = '';
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 $atts = $this->convertAttributesToNewProgressBar( $atts );
@@ -27,7 +26,7 @@ $atts = $this->convertAttributesToNewProgressBar( $atts );
 extract( $atts );
 wp_enqueue_script( 'waypoints' );
 
-$el_class = $this->getExtraClass( $el_class ) . $this->getCSSAnimation( $css_animation );
+$el_class = $this->getExtraClass( $el_class );
 
 $bar_options = array();
 $options = explode( ',', $options );

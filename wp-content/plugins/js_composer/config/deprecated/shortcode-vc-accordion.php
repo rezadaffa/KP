@@ -1,10 +1,6 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
-	'name' => __( 'Old Accordion', 'js_composer' ),
+	'name' => __( 'Accordion', 'js_composer' ),
 	'base' => 'vc_accordion',
 	'show_settings_on_create' => false,
 	'is_container' => true,

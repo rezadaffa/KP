@@ -1,7 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
+
 /**
  * New button implementation
  * array_merge is needed due to merging other shortcode data into params.

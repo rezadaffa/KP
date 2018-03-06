@@ -10,21 +10,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @var $link
  * @var $el_class
  * @var $css
- * @var $css_animation
  * @var $el_width
  * @var $el_aspect
  * @var $align
  * Shortcode class
  * @var $this WPBakeryShortCode_VC_Video
  */
-$title = $link = $el_class = $css = $css_animation = $el_width = $el_aspect = $align = '';
+$title = $link = $el_class = $css = $el_width = $el_aspect = $align = '';
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 extract( $atts );
 
 if ( '' === $link ) {
 	return null;
 }
-$el_class = $this->getExtraClass( $el_class ) . $this->getCSSAnimation( $css_animation );
+$el_class = $this->getExtraClass( $el_class );
 
 $video_w = 500;
 $video_h = $video_w / 1.61; //1.61 golden ratio

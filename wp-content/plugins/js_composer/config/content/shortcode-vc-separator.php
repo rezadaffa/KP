@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
 	'name' => __( 'Separator', 'js_composer' ),
 	'base' => 'vc_separator',
@@ -62,7 +58,6 @@ return array(
 			'value' => getVcShared( 'separator widths' ),
 			'description' => __( 'Select separator width (percentage).', 'js_composer' ),
 		),
-		vc_map_add_css_animation(),
 		array(
 			'type' => 'textfield',
 			'heading' => __( 'Extra class name', 'js_composer' ),

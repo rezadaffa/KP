@@ -55,8 +55,6 @@ class Vc_Grid_Item_Preview {
 	 *
 	 * @param $link
 	 *
-	 * @param $atts
-	 * @param $css_class
 	 * @return string
 	 */
 	public function disableContentLink( $link, $atts, $css_class ) {
@@ -69,9 +67,6 @@ class Vc_Grid_Item_Preview {
 	 *
 	 * @param $link
 	 *
-	 * @param $atts
-	 * @param $post
-	 * @param $css_class
 	 * @return string
 	 */
 	public function disableRealContentLink( $link, $atts, $post, $css_class ) {

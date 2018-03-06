@@ -44,37 +44,25 @@ class Vc_License {
 
 	public function init() {
 
-		if ( isset( $_GET['page'] ) && 'vc-updater' === $_GET['page'] ) {
+		if ( isset( $_GET['page'] ) && $_GET['page'] === 'vc-updater' ) {
 			if ( ! empty( $_GET['activate'] ) ) {
 				$this->finishActivationDeactivation( true, $_GET['activate'] );
 			} else if ( ! empty( $_GET['deactivate'] ) ) {
-				$this->finishActivationDeactivation( false, $_GET['deactivate'] );
+				$this->finishActivationDeactivation( false,
+					$_GET['deactivate'] );
 			}
 		}
 
-		add_action( 'wp_ajax_vc_get_activation_url', array(
-			$this,
-			'startActivationResponse',
-		) );
-		add_action( 'wp_ajax_vc_get_deactivation_url', array(
-			$this,
-			'startDeactivationResponse',
-		) );
+		add_action( 'wp_ajax_vc_get_activation_url',
+			array( &$this, 'startActivationResponse' ) );
+		add_action( 'wp_ajax_vc_get_deactivation_url',
+			array( &$this, 'startDeactivationResponse' ) );
 
 		// @deprecated 4.8 Remove after 2015-12-01
-		add_action( 'wp_ajax_wpb_activate_license', array(
-			$this,
-			'activate',
-		) );
-		add_action( 'wp_ajax_wpb_deactivate_license', array(
-			$this,
-			'deactivate',
-		) );
-
-		add_action( 'wp_ajax_nopriv_vc_check_license_key', array(
-			vc_license(),
-			'checkLicenseKeyFromRemote',
-		) );
+		add_action( 'wp_ajax_wpb_activate_license',
+			array( &$this, 'activate' ) );
+		add_action( 'wp_ajax_wpb_deactivate_license',
+			array( &$this, 'deactivate' ) );
 	}
 
 	/**
@@ -86,7 +74,7 @@ class Vc_License {
 	function outputNotice( $message, $success = true ) {
 		echo '
 			<div class="' . ( $success ? 'updated' : 'error' ) . '">
-				<p>' . esc_html( $message ) . '</p>
+				<p>' . $message . '</p>
 			</div>
 		';
 	}
@@ -98,10 +86,7 @@ class Vc_License {
 	 */
 	public function showError( $error ) {
 		$this->error = $error;
-		add_action( 'admin_notices', array(
-			$this,
-			'outputLastError',
-		) );
+		add_action( 'admin_notices', array( &$this, 'outputLastError' ) );
 	}
 
 	/**
@@ -115,14 +100,18 @@ class Vc_License {
 	 * Output successful activation message
 	 */
 	function outputActivatedSuccess() {
-		$this->outputNotice( __( 'Visual Composer successfully activated.', 'js_composer' ), true );
+		$this->outputNotice( __( 'Visual Composer successfully activated.',
+			'js_composer' ),
+			true );
 	}
 
 	/**
 	 * Output successful deactivation message
 	 */
 	function outputDeactivatedSuccess() {
-		$this->outputNotice( __( 'Visual Composer successfully deactivated.', 'js_composer' ), true );
+		$this->outputNotice( __( 'Visual Composer successfully deactivated.',
+			'js_composer' ),
+			true );
 	}
 
 	/**
@@ -139,7 +128,8 @@ class Vc_License {
 	 */
 	function finishActivationDeactivation( $activation, $user_token ) {
 		if ( ! $this->isValidToken( $user_token ) ) {
-			$this->showError( __( 'Token is not valid or has expired', 'js_composer' ) );
+			$this->showError( __( 'Token is not valid or has expired',
+				'js_composer' ) );
 
 			return false;
 		}
@@ -155,13 +145,17 @@ class Vc_License {
 		$response = wp_remote_post( $url, $params );
 
 		if ( is_wp_error( $response ) ) {
-			$this->showError( __( sprintf( '%s. Please try again.', $response->get_error_message() ), 'js_composer' ) );
+			$this->showError( __( sprintf( '%s. Please try again.',
+				$response->get_error_message() ),
+				'js_composer' ) );
 
 			return false;
 		}
 
-		if ( 200 !== $response['response']['code'] ) {
-			$this->showError( __( sprintf( 'Server did not respond with OK: %s', $response['response']['code'] ), 'js_composer' ) );
+		if ( $response['response']['code'] !== 200 ) {
+			$this->showError( __( sprintf( 'Server did not respond with OK: %s',
+				$response['response']['code'] ),
+				'js_composer' ) );
 
 			return false;
 		}
@@ -169,37 +163,36 @@ class Vc_License {
 		$json = json_decode( $response['body'], true );
 
 		if ( ! $json || ! isset( $json['status'] ) ) {
-			$this->showError( __( 'Invalid response structure. Please contact us for support.', 'js_composer' ) );
+			$this->showError( __( 'Invalid response structure. Please contact us for support.',
+				'js_composer' ) );
 
 			return false;
 		}
 
 		if ( ! $json['status'] ) {
-			$this->showError( __( 'Something went wrong. Please contact us for support.', 'js_composer' ) );
+			$this->showError( __( 'Something went wrong. Please contact us for support.',
+				'js_composer' ) );
 
 			return false;
 		}
 
 		if ( $activation ) {
 			if ( ! isset( $json['license_key'] ) || ! $this->isValidFormat( $json['license_key'] ) ) {
-				$this->showError( __( 'Invalid response structure. Please contact us for support.', 'js_composer' ) );
+				$this->showError( __( 'Invalid response structure. Please contact us for support.',
+					'js_composer' ) );
 
 				return false;
 			}
 
 			$this->setLicenseKey( $json['license_key'] );
 
-			add_action( 'admin_notices', array(
-				$this,
-				'outputActivatedSuccess',
-			) );
+			add_action( 'admin_notices',
+				array( &$this, 'outputActivatedSuccess' ) );
 		} else {
 			$this->setLicenseKey( '' );
 
-			add_action( 'admin_notices', array(
-				$this,
-				'outputDeactivatedSuccess',
-			) );
+			add_action( 'admin_notices',
+				array( &$this, 'outputDeactivatedSuccess' ) );
 		}
 
 		$this->setLicenseKeyToken( '' );
@@ -215,7 +208,7 @@ class Vc_License {
 	 * @return string
 	 */
 	public static function getWpbControlUrl( $array ) {
-		_deprecated_function( '\Vc_License::getWpbControlUrl', '4.8 (will be removed in next release)' );
+		// _deprecated_function( '\Vc_License::getWpbControlUrl', '4.8 (will be removed in 4.11)' );
 		$array1 = array(
 			'h',
 			'tt',
@@ -248,7 +241,7 @@ class Vc_License {
 	 * @param string $deactivation_key
 	 */
 	public function setDeactivation( $deactivation_key ) {
-		_deprecated_function( '\Vc_License::setDeactivation', '4.8 (will be removed in next release)' );
+		// _deprecated_function( '\Vc_License::setDeactivation', '4.8 (will be removed in 4.11)' );
 		update_option( 'vc_license_activation_key', $deactivation_key );
 	}
 
@@ -258,7 +251,7 @@ class Vc_License {
 	 * @return string
 	 */
 	public function deactivation() {
-		_deprecated_function( '\Vc_License::deactivation', '4.8 (will be removed in next release)' );
+		// _deprecated_function( '\Vc_License::deactivation', '4.8 (will be removed in 4.11)' );
 
 		return get_option( 'vc_license_activation_key' );
 	}
@@ -297,10 +290,14 @@ class Vc_License {
 	 */
 	public function generateActivationUrl() {
 		$token = sha1( $this->newLicenseKeyToken() );
-		$url = esc_url( self::getSiteUrl() );
-		$redirect = esc_url( vc_updater()->getUpdaterUrl() );
+		$url = esc_url( site_url() );
+		$redirect = esc_url( vc_is_network_plugin() ? network_admin_url( 'admin.php?page=vc-updater' ) : admin_url( 'admin.php?page=vc-updater' ) );
 
-		return sprintf( '%s/activate-license?token=%s&url=%s&redirect=%s', self::$support_host, $token, $url, $redirect );
+		return sprintf( '%s/activate-license?token=%s&url=%s&redirect=%s',
+			self::$support_host,
+			$token,
+			$url,
+			$redirect );
 	}
 
 	/**
@@ -311,17 +308,29 @@ class Vc_License {
 	public function generateDeactivationUrl() {
 		$license_key = $this->getLicenseKey();
 		$token = sha1( $this->newLicenseKeyToken() );
-		$url = esc_url( self::getSiteUrl() );
-		$redirect = esc_url( vc_updater()->getUpdaterUrl() );
+		$url = esc_url( site_url() );
+		$redirect = esc_url( vc_is_network_plugin() ? network_admin_url( 'admin.php?page=vc-updater' ) : admin_url( 'admin.php?page=vc-updater' ) );
 
-		return sprintf( '%s/deactivate-license?license_key=%s&token=%s&url=%s&redirect=%s', self::$support_host, $license_key, $token, $url, $redirect );
+		return sprintf( '%s/deactivate-license?license_key=%s&token=%s&url=%s&redirect=%s',
+			self::$support_host,
+			$license_key,
+			$token,
+			$url,
+			$redirect );
 	}
 
 	/**
 	 * Start activation process and output redirect URL as JSON
 	 */
 	public function startActivationResponse() {
-		vc_user_access()->checkAdminNonce()->validateDie()->wpAny( 'manage_options' )->validateDie()->part( 'settings' )->can( 'vc-updater-tab' )->validateDie();
+		vc_user_access()
+			->checkAdminNonce()
+			->validateDie()
+			->wpAny( 'manage_options' )
+			->validateDie()
+			->part( 'settings' )
+			->can( 'vc-updater-tab' )
+			->validateDie();
 
 		$response = array(
 			'status' => true,
@@ -335,8 +344,14 @@ class Vc_License {
 	 * Start deactivation process and output redirect URL as JSON
 	 */
 	public function startDeactivationResponse() {
-		vc_user_access()->checkAdminNonce()->validateDie( 'Failed nonce check' )->wpAny( 'manage_options' )->validateDie( 'Failed access check' )->part( 'settings' )->can( 'vc-updater-tab' )
-			->validateDie( 'Failed access check #2' );
+		vc_user_access()
+			->checkAdminNonce()
+			->validateDie()
+			->wpAny( 'manage_options' )
+			->validateDie()
+			->part( 'settings' )
+			->can( 'vc-updater-tab' )
+			->validateDie();
 
 		$response = array(
 			'status' => true,
@@ -352,8 +367,15 @@ class Vc_License {
 	 * @deprecated 4.8 Remove after 2015-12-01
 	 */
 	public function activate() {
-		_deprecated_function( '\Vc_License::active', '4.8 (will be removed in next release)' );
-		vc_user_access()->checkAdminNonce()->validateDie()->wpAny( 'manage_options' )->validateDie()->part( 'settings' )->can( 'vc-updater-tab' )->validateDie();
+		// _deprecated_function( '\Vc_License::active', '4.8 (will be removed in 4.11)' );
+		vc_user_access()
+			->checkAdminNonce()
+			->validateDie()
+			->wpAny( 'manage_options' )
+			->validateDie()
+			->part( 'settings' )
+			->can( 'vc-updater-tab' )
+			->validateDie();
 
 		$params = array();
 		$params['username'] = vc_post_param( 'username' );
@@ -379,7 +401,7 @@ class Vc_License {
 			die();
 		}
 		if ( true === (boolean) $result->result || ( 401 === (int) $result->code && isset( $result->deactivation_key ) ) ) {
-			$this->setDeactivation( isset( $result->code ) && 401 === (int) $result->code ? $result->deactivation_key : $params['dkey'] );
+			$this->setDeactivation( isset( $result->code ) && (int) $result->code === 401 ? $result->deactivation_key : $params['dkey'] );
 			vc_settings()->set( 'envato_username', $params['username'] );
 			vc_settings()->set( 'envato_api_key', $params['api_key'] );
 			vc_license()->setLicenseKey( $params['key'] );
@@ -396,11 +418,7 @@ class Vc_License {
 	 * @param string $license_key
 	 */
 	public function setLicenseKey( $license_key ) {
-		if ( vc_is_network_plugin() ) {
-			update_site_option( 'wpb_js_' . self::$license_key_option, $license_key );
-		} else {
-			vc_settings()->set( self::$license_key_option, $license_key );
-		}
+		vc_settings()->set( self::$license_key_option, $license_key );
 	}
 
 	/**
@@ -409,13 +427,7 @@ class Vc_License {
 	 * @return string
 	 */
 	public function getLicenseKey() {
-		if ( vc_is_network_plugin() ) {
-			$value = get_site_option( 'wpb_js_' . self::$license_key_option );
-		} else {
-			$value = vc_settings()->get( self::$license_key_option );
-		}
-
-		return $value;
+		return vc_settings()->get( self::$license_key_option );
 	}
 
 	/**
@@ -435,8 +447,15 @@ class Vc_License {
 	 * @deprecated 4.8 Remove after 2015-12-01
 	 */
 	public function deactivate() {
-		_deprecated_function( '\Vc_License::active', '4.8 (will be removed in next release)' );
-		vc_user_access()->checkAdminNonce()->validateDie()->wpAny( 'manage_options' )->validateDie()->part( 'settings' )->can( 'vc-updater-tab' )->validateDie();
+		// _deprecated_function( '\Vc_License::active', '4.8 (will be removed in 4.11)' );
+		vc_user_access()
+			->checkAdminNonce()
+			->validateDie()
+			->wpAny( 'manage_options' )
+			->validateDie()
+			->part( 'settings' )
+			->can( 'vc-updater-tab' )
+			->validateDie();
 
 		$params = array();
 		$params['dkey'] = $this->deactivation();
@@ -468,11 +487,12 @@ class Vc_License {
 			return;
 		}
 
-		if ( ! $this->isActivated() && ( empty( $_COOKIE['vchideactivationmsg_vc11'] ) || version_compare( $_COOKIE['vchideactivationmsg_vc11'], WPB_VC_VERSION, '<' ) ) && ! ( vc_is_network_plugin() && is_network_admin() ) ) {
-			add_action( 'admin_notices', array(
-				$this,
-				'adminNoticeLicenseActivation',
-			) );
+		if ( ! $this->isActivated() && ( empty( $_COOKIE['vchideactivationmsg_vc11'] ) || version_compare( $_COOKIE['vchideactivationmsg_vc11'],
+					WPB_VC_VERSION,
+					'<' ) ) && ! ( vc_is_network_plugin() && is_network_admin() )
+		) {
+			add_action( 'admin_notices',
+				array( $this, 'adminNoticeLicenseActivation', ) );
 		}
 	}
 
@@ -490,7 +510,7 @@ class Vc_License {
 	 */
 	public static function isDevEnvironment( $host = null ) {
 		if ( ! $host ) {
-			$host = self::getSiteUrl();
+			$host = $_SERVER['HTTP_HOST'];
 		}
 
 		$chunks = explode( '.', $host );
@@ -499,15 +519,16 @@ class Vc_License {
 			return true;
 		}
 
-		if ( in_array( end( $chunks ), array(
-			'local',
-			'dev',
-			'wp',
-			'test',
-			'example',
-			'localhost',
-			'invalid',
-		) ) ) {
+		if ( in_array( end( $chunks ),
+			array(
+				'local',
+				'dev',
+				'wp',
+				'test',
+				'example',
+				'localhost',
+				'invalid',
+			) ) ) {
 			return true;
 		}
 
@@ -519,12 +540,8 @@ class Vc_License {
 	}
 
 	public function adminNoticeLicenseActivation() {
-		if ( vc_is_network_plugin() ) {
-			update_site_option( 'wpb_js_composer_license_activation_notified', 'yes' );
-		} else {
-			vc_settings()->set( 'composer_license_activation_notified', 'yes' );
-		}
-		$redirect = esc_url( vc_updater()->getUpdaterUrl() );
+		update_option( 'wpb_js_composer_license_activation_notified', 'yes' );
+		$redirect = esc_url( ( vc_is_network_plugin() ? network_admin_url( 'admin.php?page=vc-updater' ) : admin_url( 'admin.php?page=vc-updater' ) ) );
 		?>
 		<style>
 			.vc_license-activation-notice {
@@ -557,7 +574,9 @@ class Vc_License {
 			})( window.jQuery );
 		</script>
 		<?php
-		echo '<div class="updated vc_license-activation-notice" id="vc_license-activation-notice"><p>' . sprintf( __( 'Hola! Would you like to receive automatic updates and unlock premium support? Please <a href="%s">activate your copy</a> of Visual Composer.', 'js_composer' ), wp_nonce_url( $redirect ) ) . '</p>' . '<button type="button" class="notice-dismiss vc-notice-dismiss"><span class="screen-reader-text">' . __( 'Dismiss this notice.' ) . '</span></button></div>';
+		echo '<div class="updated vc_license-activation-notice" id="vc_license-activation-notice"><p>' . sprintf( __( 'Hola! Would you like to receive automatic updates and unlock premium support? Please <a href="%s">activate your copy</a> of Visual Composer.',
+				'js_composer' ),
+				wp_nonce_url( $redirect ) ) . '</p>' . '<button type="button" class="notice-dismiss vc-notice-dismiss"><span class="screen-reader-text">' . __( 'Dismiss this notice.' ) . '</span></button></div>';
 	}
 
 	/**
@@ -566,9 +585,7 @@ class Vc_License {
 	 * @return string
 	 */
 	public function getLicenseKeyToken() {
-		$value = vc_is_network_plugin() ? get_site_option( self::$license_key_token_option ) : get_option( self::$license_key_token_option );
-
-		return $value;
+		return get_option( self::$license_key_token_option );
 	}
 
 	/**
@@ -579,13 +596,7 @@ class Vc_License {
 	 * @return string
 	 */
 	public function setLicenseKeyToken( $token ) {
-		if ( vc_is_network_plugin() ) {
-			$value = update_site_option( self::$license_key_token_option, $token );
-		} else {
-			$value = update_option( self::$license_key_token_option, $token );
-		}
-
-		return $value;
+		return update_option( self::$license_key_token_option, $token );
 	}
 
 	/**
@@ -627,7 +638,7 @@ class Vc_License {
 	public function isValidToken( $token_to_check, $ttl_in_seconds = 1200 ) {
 		$token = $this->getLicenseKeyToken();
 
-		if ( ! $token_to_check || sha1( $token ) !== $token_to_check ) {
+		if ( ! $token_to_check || $token_to_check !== sha1( $token ) ) {
 			return false;
 		}
 
@@ -654,13 +665,5 @@ class Vc_License {
 		$pattern = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
 
 		return (bool) preg_match( $pattern, $license_key );
-	}
-
-	public static function getSiteUrl() {
-		if ( vc_is_network_plugin() ) {
-			return network_site_url();
-		} else {
-			return site_url();
-		}
 	}
 }

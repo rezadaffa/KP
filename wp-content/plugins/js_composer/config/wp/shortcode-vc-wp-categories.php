@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
 	'name' => 'WP ' . __( 'Categories' ),
 	'base' => 'vc_wp_categories',

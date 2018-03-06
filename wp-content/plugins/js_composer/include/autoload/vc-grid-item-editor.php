@@ -48,10 +48,17 @@ function vc_grid_item_editor_init() {
  * @since 4.4
  */
 function vc_grid_item_render_preview() {
-	vc_user_access()->checkAdminNonce()->validateDie()->wpAny( array(
+	vc_user_access()
+		->checkAdminNonce()
+		->validateDie()
+		->wpAny( array(
 			'edit_post',
 			(int) vc_request_param( 'post_id' ),
-		) )->validateDie()->part( 'grid_builder' )->can()->validateDie();
+		) )
+		->validateDie()
+		->part( 'grid_builder' )
+		->can()
+		->validateDie();
 
 	require_once vc_path_dir( 'PARAMS_DIR', 'vc_grid_item/class-vc-grid-item.php' );
 	$grid_item = new Vc_Grid_Item();
@@ -91,6 +98,25 @@ function vc_grid_item_render_preview() {
 }
 
 /**
+ * Adds grid item post type into the list of excluded post types for VC editors.
+ *
+ * @param array $list
+ *
+ * @since 4.4
+ * @deprecated 4.10
+ * @return array
+ */
+function vc_grid_item_vc_settings_exclude( array $list ) {
+	_deprecated_function( 'vc_grid_item_vc_settings_exclude function', '4.4 (will be removed in 4.10)');
+
+	require_once vc_path_dir( 'PARAMS_DIR', 'vc_grid_item/editor/class-vc-grid-item-editor.php' );
+	$vc_grid_item_editor = new Vc_Grid_Item_Editor();
+	$list[] = $vc_grid_item_editor->postType();
+
+	return $list;
+}
+
+/**
  * Map grid element shortcodes.
  *
  * @since 4.5
@@ -126,8 +152,13 @@ function vc_grid_item_get_post_type() {
 function vc_grid_item_editor_shortcodes() {
 	require_once vc_path_dir( 'PARAMS_DIR', 'vc_grid_item/editor/class-vc-grid-item-editor.php' );
 	// TODO: remove this because mapping can be based on post_type
-	if ( ( 'true' === vc_request_param( 'vc_grid_item_editor' ) || ( is_admin() && vc_grid_item_get_post_type() === Vc_Grid_Item_Editor::postType() ) && vc_user_access()
-			->wpAny( 'edit_posts', 'edit_pages' )->part( 'grid_builder' )->can()->get() )
+	if ( ( 'true' === vc_request_param( 'vc_grid_item_editor' )
+	       || ( is_admin() && vc_grid_item_get_post_type() === Vc_Grid_Item_Editor::postType() ) &&
+	          vc_user_access()
+		          ->wpAny( 'edit_posts', 'edit_pages' )
+		          ->part( 'grid_builder' )
+		          ->can()
+		          ->get() )
 	) {
 
 		global $vc_grid_item_editor;
@@ -154,7 +185,15 @@ add_action( 'vc_after_init', 'vc_grid_item_editor_shortcodes' );
  * Call preview as ajax request is called.
  */
 add_action( 'wp_ajax_vc_gitem_preview', 'vc_grid_item_render_preview', 5 );
-
+/**
+ * Add vc grid item to the list of the excluded post types for enabling Vc editor.
+ *
+ * Called with with 'vc_settings_exclude_post_type' action.
+ * @deprecated, will be removed in 4.10
+ */
+if ( 'admin_settings_page' === vc_mode() ) {
+	add_filter( 'vc_settings_exclude_post_type', 'vc_grid_item_vc_settings_exclude' );
+}
 /**
  * Add WP ui pointers in grid element editor.
  */
@@ -171,7 +210,10 @@ function vc_grid_item_register_pointer( $pointers ) {
 				array(
 					'target' => '#vc_templates-editor-button',
 					'options' => array(
-						'content' => sprintf( '<h3> %s </h3> <p> %s </p>', __( 'Start Here!', 'js_composer' ), __( 'Start easy - use predefined template as a starting point and modify it.', 'js_composer' ) ),
+						'content' => sprintf( '<h3> %s </h3> <p> %s </p>',
+							__( 'Start Here!', 'js_composer' ),
+							__( 'Start easy - use predefined template as a starting point and modify it.', 'js_composer' )
+						),
 						'position' => array(
 							'edge' => 'left',
 							'align' => 'center',
@@ -181,7 +223,10 @@ function vc_grid_item_register_pointer( $pointers ) {
 				array(
 					'target' => '[data-vc-navbar-control="animation"]',
 					'options' => array(
-						'content' => sprintf( '<h3> %s </h3> <p> %s </p>', __( 'Use Animations', 'js_composer' ), __( 'Select animation preset for grid element. "Hover" state will be added next to the "Normal" state tab.', 'js_composer' ) ),
+						'content' => sprintf( '<h3> %s </h3> <p> %s </p>',
+							__( 'Use Animations', 'js_composer' ),
+							__( 'Select animation preset for grid element. "Hover" state will be added next to the "Normal" state tab.', 'js_composer' )
+						),
 						'position' => array(
 							'edge' => 'right',
 							'align' => 'center',
@@ -191,7 +236,10 @@ function vc_grid_item_register_pointer( $pointers ) {
 				array(
 					'target' => '.vc_gitem_animated_block-shortcode',
 					'options' => array(
-						'content' => sprintf( '<h3> %s </h3> <p> %s </p>', __( 'Style Design Options', 'js_composer' ), __( 'Edit "Normal" state to set "Featured image" as a background, control zone sizing proportions and other design options (Height mode: Select "Original" to scale image without cropping).', 'js_composer' ) ),
+						'content' => sprintf( '<h3> %s </h3> <p> %s </p>',
+							__( 'Style Design Options', 'js_composer' ),
+							__( 'Edit "Normal" state to set "Featured image" as a background, control zone sizing proportions and other design options (Height mode: Select "Original" to scale image without cropping).', 'js_composer' )
+						),
 						'position' => array(
 							'edge' => 'bottom',
 							'align' => 'center',
@@ -201,7 +249,10 @@ function vc_grid_item_register_pointer( $pointers ) {
 				array(
 					'target' => '[data-vc-gitem="add-c"][data-vc-position="top"]',
 					'options' => array(
-						'content' => sprintf( '<h3> %s </h3> <p> %s </p>', __( 'Extend Element', 'js_composer' ), __( 'Additional content zone can be added to grid element edges (Note: This zone can not be animated).', 'js_composer' ) ) . '<p><img src="' . vc_asset_url( 'vc/gb_additional_content.png' ) . '" alt="" /></p>',
+						'content' => sprintf( '<h3> %s </h3> <p> %s </p>',
+							__( 'Extend Element', 'js_composer' ),
+							__( 'Additional content zone can be added to grid element edges (Note: This zone can not be animated).', 'js_composer' )
+						) . '<p><img src="' . vc_asset_url( 'vc/gb_additional_content.png' ) . '" alt="" /></p>',
 						'position' => array(
 							'edge' => 'right',
 							'align' => 'center',
@@ -211,7 +262,11 @@ function vc_grid_item_register_pointer( $pointers ) {
 				array(
 					'target' => '#wpadminbar',
 					'options' => array(
-						'content' => sprintf( '<h3> %s </h3> %s', __( 'Watch Video Tutorial', 'js_composer' ), '<p>' . __( 'Have a look how easy it is to work with grid element builder.', 'js_composer' ) . '</p>' . '<iframe width="500" height="281" src="//www.youtube.com/embed/sBvEiIL6Blo" frameborder="0" allowfullscreen></iframe>' ),
+						'content' => sprintf( '<h3> %s </h3> %s',
+							__( 'Watch Video Tutorial', 'js_composer' ),
+							'<p>' . __( 'Have a look how easy it is to work with grid element builder.', 'js_composer' ) . '</p>'
+							. '<iframe width="500" height="281" src="//www.youtube.com/embed/sBvEiIL6Blo" frameborder="0" allowfullscreen></iframe>'
+						),
 						'position' => array(
 							'edge' => 'top',
 							'align' => 'center',
@@ -230,7 +285,8 @@ function vc_grid_item_register_pointer( $pointers ) {
 function vc_gitem_content_shortcodes() {
 	require_once vc_path_dir( 'PARAMS_DIR', 'vc_grid_item/class-vc-grid-item.php' );
 	$grid_item = new Vc_Grid_Item();
-	$invalid_shortcodes = apply_filters( 'vc_gitem_zone_grid_item_not_content_shortcodes', array(
+	$invalid_shortcodes = apply_filters( 'vc_gitem_zone_grid_item_not_content_shortcodes',
+		array(
 			'vc_gitem',
 			'vc_gitem_animated_block',
 			'vc_gitem_zone',
@@ -241,7 +297,7 @@ function vc_gitem_content_shortcodes() {
 			'vc_gitem_col',
 		) );
 
-	return array_diff( array_keys( $grid_item->shortcodes() ), $invalid_shortcodes );
+		return array_diff( array_keys( $grid_item->shortcodes() ), $invalid_shortcodes );
 }
 
 function vc_gitem_has_content( $content ) {
@@ -280,7 +336,13 @@ function vc_gitem_menu_highlight() {
 add_action( 'admin_head', 'vc_gitem_menu_highlight' );
 
 function vc_gitem_set_mapper_check_access() {
-	if ( vc_user_access()->checkAdminNonce()->wpAny( 'edit_posts', 'edit_pages' )->part( 'grid_builder' )->can()->get() && 'true' === vc_post_param( 'vc_grid_item_editor' ) ) {
+	if ( vc_user_access()
+		     ->checkAdminNonce()
+		     ->wpAny( 'edit_posts', 'edit_pages' )
+		     ->part( 'grid_builder' )
+		     ->can()
+		     ->get() && 'true' === vc_post_param( 'vc_grid_item_editor' )
+	) {
 		vc_mapper()->setCheckForAccess( false );
 	}
 }

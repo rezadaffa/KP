@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
 	'name' => __( 'Progress Bar', 'js_composer' ),
 	'base' => 'vc_progress_bar',
@@ -147,7 +143,6 @@ return array(
 				__( 'Add animation (Note: visible only with striped bar).', 'js_composer' ) => 'animated',
 			),
 		),
-		vc_map_add_css_animation(),
 		array(
 			'type' => 'textfield',
 			'heading' => __( 'Extra class name', 'js_composer' ),

@@ -94,17 +94,15 @@
 .wpb_el_type_attach_image {
   // Add new image square button
   .gallery_widget_add_images {
-    margin-top: 0;
+    margin-top: 0px;
     display: block;
     float: left;
     height: 80px;
     width: 80px;
-    background: #F5F5F5;
+    background: #F5F5F5 url("../vc/add.png") no-repeat center center;
     border: 1px solid #DFDFDF;
-    font-size: 0;
+    font-size: 0px;
     color: #F5F5F5;
-    position: relative;
-
     &:hover {
       color: #C8C8C8;
       border-color: #C8C8C8;
@@ -113,36 +111,18 @@
     &:focus {
       box-shadow: none;
     }
-
-    .vc-composer-icon {
-      font-size: 18px;
-      color: #87D148;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      .translate(-50%, -50%);
-    }
   }
   .vc_icon-remove {
-    //background: transparent url(../vc/remove.png) center center no-repeat;
+    background: transparent url(../vc/remove.png) center center no-repeat;
     width: 16px;
     height: 16px;
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
-    .translate(-50%, -50%);
-
+    transform: translate(-50%, -50%);
     &:hover {
       .opacity(0.7);
-    }
-    .vc-composer-icon {
-      font-size: 18px;
-      color: #FF7877;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      .translate(-50%, -50%);
     }
   }
 }
@@ -257,5 +237,3 @@ option, select {
 @import "../params/dropdown.less";
 @import "../lib/pixel_icons.less";
 @import "../params/hidden.less";
-@import "../lib/css3_animations.less";
-

@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
 	'name' => __( 'Line Chart', 'js_composer' ),
 	'base' => 'vc_line_chart',
@@ -124,7 +120,6 @@ return array(
 			'value' => getVcShared( 'animation styles' ),
 			'std' => 'easeinOutCubic',
 		),
-		vc_map_add_css_animation(),
 		array(
 			'type' => 'textfield',
 			'heading' => __( 'Extra class name', 'js_composer' ),

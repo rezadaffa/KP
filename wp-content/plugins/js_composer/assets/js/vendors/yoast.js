@@ -1,5 +1,5 @@
 /* global vc, YoastSEO, _, jQuery */
-jQuery( window ).on( 'YoastSEO:ready', function () {
+jQuery( document ).ready( function () {
 	'use strict';
 	var imageEventString, vcYoast, relevantData = {}, pluginName = 'vcVendorYoast', eventsList = [
 		'sync',
@@ -80,14 +80,13 @@ jQuery( window ).on( 'YoastSEO:ready', function () {
 			}
 		}
 	} );
-
 	var VcVendorYoast = function () {
 		// init
 		YoastSEO.app.registerPlugin( pluginName, { status: 'ready' } );
 		YoastSEO.app.pluginReady( pluginName );
 		YoastSEO.app.registerModification( 'content', contentModification, pluginName, 5 );
 	};
-
-	vcYoast = new VcVendorYoast();
-
+	jQuery( window ).on( 'YoastSEO:ready', function () {
+		vcYoast = new VcVendorYoast();
+	} );
 } );

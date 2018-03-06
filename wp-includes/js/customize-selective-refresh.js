@@ -121,12 +121,12 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 				return;
 			}
 			$shortcut = partial.createEditShortcut();
+			partial.addEditShortcutToPlacement( placement, $shortcut );
 			$shortcut.on( 'click', function( event ) {
 				event.preventDefault();
 				event.stopPropagation();
 				partial.showControl();
 			} );
-			partial.addEditShortcutToPlacement( placement, $shortcut );
 		},
 
 		/**
@@ -312,15 +312,14 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 		 * @since 4.5.0
 		 */
 		showControl: function() {
-			var partial = this, settingId = partial.params.primarySetting;
+			var partial = this, settingId = partial.params.primarySetting, menuSlug;
 			if ( ! settingId ) {
 				settingId = _.first( partial.settings() );
 			}
 			if ( partial.getType() === 'nav_menu' ) {
-				if ( partial.params.navMenuArgs.theme_location ) {
-					settingId = 'nav_menu_locations[' + partial.params.navMenuArgs.theme_location + ']';
-				} else if ( partial.params.navMenuArgs.menu )   {
-					settingId = 'nav_menu[' + String( partial.params.navMenuArgs.menu ) + ']';
+				menuSlug = partial.params.navMenuArgs.theme_location;
+				if ( menuSlug ) {
+					settingId = 'nav_menu_locations[' + menuSlug + ']';
 				}
 			}
 			api.preview.send( 'focus-control-for-setting', settingId );
@@ -457,7 +456,6 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 				if ( 'undefined' !== typeof console && console.error ) {
 					console.error( partial.id, error );
 				}
-				partial.fallback( error, [ placement ] );
 			}
 			/* jshint ignore:start */
 			document.write = self.orginalDocumentWrite;
@@ -469,15 +467,6 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 
 			// Prevent placement container from being being re-triggered as being rendered among nested partials.
 			placement.container.data( 'customize-partial-content-rendered', true );
-
-			/*
-			 * Note that the 'wp_audio_shortcode_library' and 'wp_video_shortcode_library' filters
-			 * will determine whether or not wp.mediaelement is loaded and whether it will
-			 * initialize audio and video respectively. See also https://core.trac.wordpress.org/ticket/40144
-			 */
-			if ( wp.mediaelement ) {
-				wp.mediaelement.initialize();
-			}
 
 			/**
 			 * Announce when a partial's placement has been rendered so that dynamic elements can be re-built.
@@ -859,7 +848,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 			containerElements = containerElements.add( rootElement );
 		}
 		containerElements.each( function() {
-			var containerElement = $( this ), partial, placement, id, Constructor, partialOptions, containerContext;
+			var containerElement = $( this ), partial, id, Constructor, partialOptions, containerContext;
 			id = containerElement.data( 'customize-partial-id' );
 			if ( ! id ) {
 				return;
@@ -884,19 +873,14 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 			 */
 			if ( options.triggerRendered && ! containerElement.data( 'customize-partial-content-rendered' ) ) {
 
-				placement = new Placement( {
-					partial: partial,
-					context: containerContext,
-					container: containerElement
-				} );
-
-				$( placement.container ).attr( 'title', self.data.l10n.shiftClickToEdit );
-				partial.createEditShortcutForPlacement( placement );
-
 				/**
 				 * Announce when a partial's nested placement has been re-rendered.
 				 */
-				self.trigger( 'partial-content-rendered', placement );
+				self.trigger( 'partial-content-rendered', new Placement( {
+					partial: partial,
+					context: containerContext,
+					container: containerElement
+				} ) );
 			}
 			containerElement.data( 'customize-partial-content-rendered', true );
 		} );

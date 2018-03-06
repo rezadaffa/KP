@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
 	'name' => __( 'Video Player', 'js_composer' ),
 	'base' => 'vc_video',
@@ -64,7 +60,6 @@ return array(
 				__( 'Center', 'js_composer' ) => 'center',
 			),
 		),
-		vc_map_add_css_animation(),
 		array(
 			'type' => 'textfield',
 			'heading' => __( 'Extra class name', 'js_composer' ),

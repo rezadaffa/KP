@@ -2,7 +2,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-
 require_once( 'class-vc-grids-common.php' );
 $gridParams = VcGridsCommon::getBasicAtts();
 

@@ -2,7 +2,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-
 /**
  * Return true value for filter 'wpb_vc_js_status_filter'.
  * It allows to start backend editor on load.
@@ -46,7 +45,7 @@ function vc_set_default_content_for_post_type( $post_content, $post ) {
  *
  * @since 4.12
  */
-class Vc_Setting_Post_Type_Default_Template_Field {
+Class Vc_Setting_Post_Type_Default_Template_Field {
 	protected $tab;
 	protected $key;
 	protected $post_types = false;
@@ -121,7 +120,8 @@ class Vc_Setting_Post_Type_Default_Template_Field {
 		}
 		WPBMap::addAllMappedShortcodes();
 		if ( 'my_templates' === $template_type ) {
-			$saved_templates = get_option( $this->getTemplatesEditor()->getOptionName() );
+			$saved_templates = get_option( $this->getTemplatesEditor()
+			                                    ->getOptionName() );
 
 			$content = trim( $saved_templates[ $template_id ]['template'] );
 			$content = str_replace( '\"', '"', $content );
@@ -129,7 +129,8 @@ class Vc_Setting_Post_Type_Default_Template_Field {
 			$template = preg_replace_callback( "/{$pattern}/s", 'vc_convert_shortcode', $content );
 		} else {
 			if ( 'default_templates' === $template_type ) {
-				$template_data = $this->getTemplatesEditor()->getDefaultTemplate( $template_id );
+				$template_data = $this->getTemplatesEditor()
+				                      ->getDefaultTemplate( $template_id );
 				if ( isset( $template_data['content'] ) ) {
 					$template = $template_data['content'];
 				}

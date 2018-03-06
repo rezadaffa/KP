@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
 	'name' => 'WP ' . __( 'RSS' ),
 	'base' => 'vc_wp_rss',
@@ -50,7 +46,7 @@ return array(
 				17,
 				18,
 				19,
-				20,
+				20
 			),
 			'description' => __( 'Select how many items to display.', 'js_composer' ),
 			'admin_label' => true,

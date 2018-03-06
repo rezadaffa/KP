@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 return array(
 	'name' => __( 'Single Image', 'js_composer' ),
 	'base' => 'vc_single_image',
@@ -38,7 +34,7 @@ return array(
 				'element' => 'source',
 				'value' => 'media_library',
 			),
-			'admin_label' => true,
+			'admin_label' => true
 		),
 		array(
 			'type' => 'textfield',
@@ -49,7 +45,7 @@ return array(
 				'element' => 'source',
 				'value' => 'external_link',
 			),
-			'admin_label' => true,
+			'admin_label' => true
 		),
 		array(
 			'type' => 'textfield',
@@ -59,10 +55,7 @@ return array(
 			'description' => __( 'Enter image size (Example: "thumbnail", "medium", "large", "full" or other sizes defined by theme). Alternatively enter size in pixels (Example: 200x100 (Width x Height)).', 'js_composer' ),
 			'dependency' => array(
 				'element' => 'source',
-				'value' => array(
-					'media_library',
-					'featured_image',
-				),
+				'value' => array( 'media_library', 'featured_image' ),
 			),
 		),
 		array(
@@ -94,10 +87,7 @@ return array(
 			'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
 			'dependency' => array(
 				'element' => 'source',
-				'value' => array(
-					'media_library',
-					'featured_image',
-				),
+				'value' => array( 'media_library', 'featured_image' ),
 			),
 		),
 		array(
@@ -119,10 +109,7 @@ return array(
 			'description' => __( 'Select image display style.', 'js_comopser' ),
 			'dependency' => array(
 				'element' => 'source',
-				'value' => array(
-					'media_library',
-					'featured_image',
-				),
+				'value' => array( 'media_library', 'featured_image' ),
 			),
 		),
 		array(
@@ -205,10 +192,7 @@ return array(
 			'value' => vc_target_param_list(),
 			'dependency' => array(
 				'element' => 'onclick',
-				'value' => array(
-					'custom_link',
-					'img_link_large',
-				),
+				'value' => array( 'custom_link', 'img_link_large' ),
 			),
 		),
 		vc_map_add_css_animation(),
